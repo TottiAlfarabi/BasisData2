@@ -17,5 +17,35 @@ create table tbKaryawan (nip varchar(5) primary key, nama varchar(20), tgl_lahir
  insert into tbKaryawan values('P0011', 'Johan', '03/15/2001','L', 'M0001', 'B', 3500000),('P0009', 'Nicholas', '05/05/2003','L', 'M0001', 'B', 5200000),('P0008', 'Yenni', '11/02/1990','L', 'M0001', 'K', 5900000)
 
 
- select nip, nama,gaji, kd_jenis, year(getdate())- year(tgl_lahir) as umur from tbKaryawan where year(getdate())- year(tgl_lahir) < 25
+ select nip, nama, gaji, kd_jenis, year(getdate())- year(tgl_lahir) as umur from tbKaryawan where year(getdate())- year(tgl_lahir) < 25
+
+
+ # download dulu dbmahasiswa p4, resto.re data.base
+
+use dbmahasiswa
+
+select * from tbmhs
+Select * from tbmk
+select * from tbtrans
+
+insert into tbmhs values('2125240392','Panji','09/02/1999','L'), 
+('2024241192','Lusia','02/11/2000','P'), ('2125250111','Reni','04/11/2001','P')
+
+delete tbmhs where npm = '2125250111'
+
+insert into tbmk values('if002', 'Basis Data II', 4), 
+('if011', 'Kalkulus II', 2), ('if010', 'Algoritma', 2), ('if008', 'Matematika Diskrit', 4)
+
+insert into tbtrans values('A0125', '2024241192', 'if008','B') 
+ 
+
+
+ select npm,nama,tgl_lahir, case when kd_jenis='P' 
+ then 'Perempuan' else 'Laki-laki' end as jenis from tbmhs where  nama like '%o'
+
+
+ select npm, nama, tgl_lahir, year(getdate())- year(tgl_lahir) as umur, case when kd_jenis='P' 
+ then 'Perempuan' else 'Laki-laki' end as jenis  from tbmhs where year(getdate())- year(tgl_lahir) > 20 and kd_jenis ='L'
+
+
  
