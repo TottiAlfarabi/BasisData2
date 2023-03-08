@@ -85,7 +85,7 @@ update pelanggan set angsuran = ((hutang + persenbunga)/24)
 update pelanggan set tgl_tempo = iif(hutang >= 14000000, '10/15/2019', '10/05/2019')
 
 
-
+#finansial1 udah done semua untuk db finansial
 
 
  
