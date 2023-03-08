@@ -65,6 +65,25 @@ insert into tbtrans values('A0125', '2024241192', 'if008','B'),('A0126','2126250
  update tbtrans set indeks = iif(nilai='B',3,iif(nilai='C',3,iif (nilai ='D',2,1)))
 
 
+  # download dulu finansial p5, resto.re data.base
+
+ use finansial
+ select * from pelanggan
+
+#1
+
+alter table pelanggan add persenbunga float, angsuran float, tgl_tempo date
+
+ #2
+update pelanggan set persenbunga = iif(hutang >= 14000000,hutang*7/100,hutang*5/100)
+
+#3
+update pelanggan set angsuran = ((hutang + persenbunga)/24)
+
+#4
+
+update pelanggan set tgl_tempo = iif(hutang >= 14000000, '10/15/2019', '10/05/2019')
+
 
 
 
