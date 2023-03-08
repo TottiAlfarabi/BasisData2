@@ -36,7 +36,7 @@ delete tbmhs where npm = '2125250111'
 insert into tbmk values('if002', 'Basis Data II', 4), 
 ('if011', 'Kalkulus II', 2), ('if010', 'Algoritma', 2), ('if008', 'Matematika Diskrit', 4)
 
-insert into tbtrans values('A0125', '2024241192', 'if008','B') 
+insert into tbtrans values('A0125', '2024241192', 'if008','B'),('A0126','2126250022','if010','A'),('A0127','2226250392','if011','B'),('A0128', '2126250022', 'if010', 'A') 
  
 
 
@@ -46,6 +46,27 @@ insert into tbtrans values('A0125', '2024241192', 'if008','B')
 
  select npm, nama, tgl_lahir, year(getdate())- year(tgl_lahir) as umur, case when kd_jenis='P' 
  then 'Perempuan' else 'Laki-laki' end as jenis  from tbmhs where year(getdate())- year(tgl_lahir) > 20 and kd_jenis ='L'
+
+
+  update tbmhs set nama = 'Lusiana' where nama = 'Lusia'
+
+ alter table tbmhs add jenis varchar(20)
+  alter table tbmhs add jurusan varchar(20)
+
+   update tbmhs set jenis = 'Laki-laki' where kd_jenis = 'L'
+   update tbmhs set jenis = 'perempuan' where kd_jenis = 'P'
+
+ alter table tbmhs add  umur int
+
+ update tbmhs set umur = year(getdate())- year(tgl_lahir)
+
+ alter table tbtrans add indeks int
+ update tbtrans set indeks = 4 where nilai='A'
+ update tbtrans set indeks = iif(nilai='B',3,iif(nilai='C',3,iif (nilai ='D',2,1)))
+
+
+
+
 
 
  
