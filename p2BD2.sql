@@ -31,6 +31,8 @@ select * from tbtrans
 insert into tbmhs values('2125240392','Panji','09/02/1999','L'), 
 ('2024241192','Lusia','02/11/2000','P'), ('2125250111','Reni','04/11/2001','P')
 
+insert into tbmhs values('2024241192','Lusia','02/11/2000','P')
+
 delete tbmhs where npm = '2125250111'
 
 insert into tbmk values('if002', 'Basis Data II', 4), 
@@ -86,6 +88,29 @@ update pelanggan set tgl_tempo = iif(hutang >= 14000000, '10/15/2019', '10/05/20
 
 
 #finansial1 udah done semua untuk db finansial
+
+select nama, 2000+left(npm,2) as kode_angkatan from tbmhs
+select nama, 2000+left(npm,2) as kode_angkatan, 2000+left(npm,2) + 5 as thunlulus from tbmhs
+select nama,right(npm,4) as No_urut from tbmhs
+
+select * from tbmhs
+
+
+update tbmhs set nama = upper(nama)
+
+update tbmhs set nama = upper(left(nama,1)) + lower(substring(nama,2,Len(nama)))
+
+select replicate('A', 5) as A, REPLICATE('B', 17) as B
+
+select reverse('ramandamd') as backward
+
+alter table tbmhs add tahun_lulus varchar(20), prodi varchar(20)
+
+
+
+update tbmhs set prodi = iif(substring(npm,5,2)='24','sistem informasi',iif(substring(npm,5,2)='25','informatika',iif(substring(npm,5,2)='21',
+'manajemen','bukan orang mdp'))),  tahun_lulus = 2000+substring(npm,3,2)
+
 
 
  
