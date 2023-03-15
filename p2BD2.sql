@@ -137,6 +137,13 @@ update ajar set jamBelajar= iif(substring(kode,10,1)='1', '08.00 - 10.00',iif(su
 
 update ajar set tglSelesai = dateadd(month, lama, tglMulai)
 
+alter table ajar add biaya int
+
+update ajar set biaya = iif(paket='Ms.Word'or paket='Ms.excel', 350000,300000)
+
+update ajar set total = lama*biaya
+
+
 
 
 
