@@ -112,5 +112,37 @@ update tbmhs set prodi = iif(substring(npm,5,2)='24','sistem informasi',iif(subs
 'manajemen','bukan orang mdp'))),  tahun_lulus = 2000+substring(npm,3,2)
 
 
+use kursus
+
+select * from ajar
+
+update ajar set angkatan = left(kode,3)
+
+update ajar set angkatan = substring(kode,1,3)
+update ajar set paket =iif(substring(kode,5,1)='A','Ms.Word', iif(substring (kode,5,1)='B', 'Ms.excel','Ms.powerpoint'))
+
+update ajar set lama =iif(substring(kode,5,1)='A' or substring(kode,5,1)='B',2,1)
+
+
+alter table ajar add tglMulai date, hariBljr varchar(20), jamBelajar varchar(20), tglSelesai date, total int
+
+update ajar set ruang=iif(substring(kode,7,1)='A', '1',iif(substring(kode,7,1) = 'B', '2', '3'))
+
+update ajar set tglMulai=iif(paket='Ms.Word','03/20/2023',iif(paket='Ms.excel','03/21/2023','03/27/2023'))
+
+
+update ajar set hariBljr=iif(substring(kode,9,1)='A', 'Senin - Kamis',iif(substring(kode,9,1) = 'B', 'Selasa - Jumat', 'Rabu - Sabtu'))
+
+update ajar set jamBelajar= iif(substring(kode,10,1)='1', '08.00 - 10.00',iif(substring(kode,10,1) = '2', '10.00 - 12.00', '13.00 - 15.00'))
+
+update ajar set tglSelesai = dateadd(month, lama, tglMulai)
+
+
+
+
+
+
+
+
 
  
