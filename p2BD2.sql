@@ -144,7 +144,38 @@ update ajar set biaya = iif(paket='Ms.Word'or paket='Ms.excel', 350000,300000)
 update ajar set total = lama*biaya
 
 
+CREATE database KARYAWAN
 
+use  KARYAWAN
+
+select * from karyawans
+create table karyawans (id char(1), nama varchar(30),tgLahir date, salary int, department varchar(5),gender varchar(1))
+alter table karyawans alter column id int
+
+insert into karyawans values('1','Ahmad Sofyan','01/01/1990',2250000,'IT','l','Bandung'),
+insert into karyawans values('2','Ismail Soleh','12/12/1986',5000000,'ACC','l','Pandeglang'),
+insert into karyawans values('3','Ferry Subekti','06/06/1987',4500000,'HRD','p', 'Purwakarta')
+,('4','Iskiyati','07/07/1988',7500000,'FIN','p', 'Brebes'),('5','Nurul Hikmah','08/08/1989',3750000,'FIN','p', 'Purwokerto')
+,('6','Riyanto','02/02/1983',4500000,'IT','l', 'Subang'),('7','Azka Nurul','03/03/1984',5000000,'HRD','p', 'Bandung')
+,('8','Venny Maya','04/04/1989',7000000,'IT','p', 'Jakarta'),('9','Anna Fauziyah','05/05/1989',3700000,'ACC','p', 'Bekasi')
+insert into karyawans values('10','Arya Ardhi','09/09/1980',8000000,'FIN','l', 'Magelang')
+
+
+#1
+select sum(salary) as totalSalary from karyawans where department = 'IT' 
+
+#2
+select gender, case when gender = 'l' then 'lelaki' else 'perempuan' end as JenisKelamin from karyawans
+
+#3
+select count(nama) as banyak from karyawans where tmpLahir = 'Bandung' and department = 'IT'  
+
+
+#4
+select salary, case when salary > 5000000 then (salary*0.1) else (salary*0.05) end as PPH from karyawans
+
+#5
+select nama, department, iif(department ='IT','Information Technology',iif(department = 'ACC','Accounting',iif(department='HRD','Human Resource','Finance'))) as Departemen from karyawans
 
 
 
