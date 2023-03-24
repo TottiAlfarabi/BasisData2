@@ -205,6 +205,31 @@ update karyawans set pph = iif(salary >5000000,salary*0.1, salary*0.05)
 
 
 
+use dbmahasiswa
+
+select  tgl_lahir,datepart(week,tgl_lahir), datepart(weekday, tgl_lahir) from tbmhs
+
+select datename(dw,'08/08/2004') as hariLahir
+
+select datediff(year,'2023-05-07','2027-07-09')
+
+
+select convert(datetime,'2026-10-04')
+
+
+alter table tbmhs  add hari_lahir varchar(10), umur int , th_kuliah int , lama_kuliah int  
+
+update  tbmhs set hari_lahir = datename(dw,tgl_lahir)
+
+update tbmhs set umur =  year(getdate())- year(tgl_lahir)
+
+update tbmhs set th_kuliah = 2000 + substring(npm,1,2)
+
+update tbmhs set lama_kuliah = (2000 + substring(npm,3,2)) - th_kuliah
+
+select * from tbmhs
+
+
 
 
 
