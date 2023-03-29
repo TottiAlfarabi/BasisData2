@@ -230,6 +230,35 @@ update tbmhs set lama_kuliah = (2000 + substring(npm,3,2)) - th_kuliah
 select * from tbmhs
 
 
+create database kursus
+
+use kursus
+
+
+create table peserta ( nomor int  IDENTITY(1,1) PRIMARY KEY ,nama varchar(30), kodePaket varchar(15), tglDaftar date, tglMasuk date)
+
+
+insert into peserta values('Yuliani', '243/A/B/A2', '09/12/2022', '10/15/2022')
+insert into peserta values('Mathilda', '245/B/A/B1', '09/14/2022', '10/18/2022')
+insert into peserta values('Johan', '244/C/B/C2', '09/14/2022', '10/17/2022')
+insert into peserta values('Ramses', '245/B/A/B1', '09/16/2022', '10/18/2022')
+insert into peserta values('Brontolaras', '243/A/B/A2', '09/18/2022', '10/15/2022')
+
+select * from peserta
+
+alter table peserta add angkatan varchar(10), paket varchar(27),biaya int, tgl_akhir date
+
+update peserta set angkatan = substring(kodePaket, 1, 3)
+update peserta set paket = iif(substring(kodePaket,5,1)='A', 'Microsoft Word',iif(substring(kodePaket,5,1)='B','Microsoft Excel','Microsoft Powerpoint'))
+
+update peserta set biaya = iif(substring(kodePaket,5,1)='A', 250000,iif(substring(kodePaket,5,1)='B',300000,250000))
+
+update peserta set lama_kursus = iif(substring(kodePaket,5,1)='A', 2,iif(substring(kodePaket,5,1)='B',2,1))
+update peserta set total = biaya*lama_kursus
+
+update peserta set tgl_akhir = dateadd(month, lama_kursus, tglMasuk)
+
+
 
 
 
