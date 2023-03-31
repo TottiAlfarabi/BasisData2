@@ -258,6 +258,46 @@ update peserta set total = biaya*lama_kursus
 
 update peserta set tgl_akhir = dateadd(month, lama_kursus, tglMasuk)
 
+use dbmahasiswa
+select * from tbmhs
+
+create view vmhs as select npm, nama, umur from tbmhs
+
+select * from vnilai
+
+create view vinformatika as select npm, nama, umur, tgl_lahir from tbmhs where substring(npm,5,2)='25'
+
+create view vnilai as select tbmhs.npm, tbmhs.nama, tbmk.nama_mk, tbtrans.nilai from tbtrans, tbmhs, tbmk
+where tbtrans.npm=tbmhs.npm and tbtrans.kode_mk=tbmk.kode_mk
+
+create database dbjual
+use dbjual
+create table penjual(idPenjual varchar(30) primary key, nama_penjual varchar(30),tgl_jual date, nilai_jual int)
+
+create table barang(id_barang varchar(30) primary key, nama_brg varchar(25), harga int, jumlah int, idPenjual varchar(30) foreign key references penjual(idPenjual))
+
+select * from barang
+select * from vtransaksi
+
+
+insert into penjual values('P0001','Rohadi', '09/12/2022', 45000000)
+insert into penjual values('P0002','Nurman', '02/15/2022', 55000000)
+insert into penjual values('P0003','Johan', '02/1/2022', 42000000)
+insert into penjual values('P0004','januari', '05/19/2022', 17000000)
+insert into penjual values('P0005','Budiman', '06/18/2022', 67000000)
+
+insert into barang values('BA211','Komputer', 7500000,2, 'P0001')
+insert into barang values('BA201','Mouse', 75000,10, 'P0003')
+insert into barang values('BA202','Keyboard', 100000,15, 'P0005')
+insert into barang values('BA204','SSD', 300000,7, 'P0001')
+
+create view vtransaksi as select penjual.nama_penjual, penjual.nilai_jual, barang.nama_brg, barang.jumlah from  penjual, barang
+where penjual.idPenjual = barang.idPenjual
+
+
+
+
+
 
 
 
