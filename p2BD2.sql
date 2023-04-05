@@ -321,8 +321,19 @@ where bayar.nomor = pelanggan.nokontrak
 
 select * from daftar
 
+create view view2 as select nama, hutang, 
+				case jkelamin
+				when 'L' then 'Laki-laki'
+				when 'P' then 'Perempuan'
+
+			end as jenis
+			from pelanggan
+
+select * from hutang
 
 
+create view hutang as select pelanggan.nama, bayar.j_angsuran, pelanggan.hutang,pelanggan.hutang-bayar.j_angsuran as sisa_hutang from pelanggan, bayar
+where bayar.nomor = pelanggan.nokontrak 
 
 
 
