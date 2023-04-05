@@ -294,6 +294,35 @@ insert into barang values('BA204','SSD', 300000,7, 'P0001')
 create view vtransaksi as select penjual.nama_penjual, penjual.nilai_jual, barang.nama_brg, barang.jumlah from  penjual, barang
 where penjual.idPenjual = barang.idPenjual
 
+use finansial
+
+select * from pelanggan
+create table bayar (kd_bayar char(5) primary key, tgl_bayar date, nomor varchar(6), j_angsuran int, bunga int)
+
+
+ALTER TABLE PELANGGAN alter column nokontrak varchar(6) not null 
+
+ALTER TABLE PELANGGAN add primary key (nokontrak) 
+
+alter table bayar  add  foreign key (nomor)  references pelanggan(nokontrak)
+
+insert into bayar values('B0001', '09/13/2022', '0003', 250000, 15000)
+insert into bayar values('B0002', '04/14/2022', '0002', 210000, 12000)
+insert into bayar values('B0003', '08/16/2022', '0001', 215000, 10000)
+insert into bayar values('B0004', '07/10/2022', '0004', 125000, 13500)
+
+
+select * from bayar
+
+
+create view daftar as select bayar.kd_bayar, pelanggan.nama, bayar.tgl_bayar, bayar.j_angsuran from pelanggan, bayar
+where bayar.nomor = pelanggan.nokontrak  
+
+
+select * from daftar
+
+
+
 
 
 
