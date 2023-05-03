@@ -337,6 +337,36 @@ where bayar.nomor = pelanggan.nokontrak
 
 
 
+--bit.ly/if2e
+
+use db_penjualan
+
+
+select * from barang
+
+--inner join
+
+select t.kd_transaksi, c.nama , c.kelurahan, t.jumlah_barang from transaksi as t inner join customer as c on t.id_customer = c.id_customer
+
+-- inner join 3 tabel
+select t.kd_transaksi as kode, c.nama as customer ,b.nama as barang, t.jumlah_barang , c.kelurahan as pengantaran from transaksi as t inner join customer as c on t.id_customer = c.id_customer inner join barang as b on t.id_barang = b.id_barang
+
+
+
+--left join
+
+select t.kd_transaksi, c.nama , c.kelurahan, t.jumlah_barang from transaksi as t left join customer as c on t.id_customer = c.id_customer
+
+
+--right join
+
+select t.kd_transaksi, c.nama , c.kelurahan, t.jumlah_barang from transaksi as t right join customer as c on t.id_customer = c.id_customer
+
+--outer join
+select t.kd_transaksi, c.nama , c.kelurahan, t.jumlah_barang from transaksi as t full outer join customer as c on t.id_customer = c.id_customer
+
+
+
 
 
 
