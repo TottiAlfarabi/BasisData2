@@ -370,7 +370,7 @@ select t.kd_transaksi, c.nama , c.kelurahan, t.jumlah_barang from transaksi as t
 
 create database db_lagu
  use db_lagu
-create table tb_lagu(kd_lagu char(5) primary key, judul_lagu varchar(25), penyanyi varchar(10), tahun_lagu varchar(10))
+create table tb_lagu(kd_lagu char(5) primary key, judul_lagu varchar(25), penyanyi varchar(15), tahun_lagu varchar(10))
 create table tb_album(kd_album char(5) primary key, nama_album varchar(25), tahun_rilis varchar(4))
 create table tb_penjualan(id_penjualan int identity(1,1) primary key, kd_lagu char(5) references tb_lagu(kd_lagu), kd_album char(5) references tb_album(kd_album),
 record_terjual int, streaming int)
