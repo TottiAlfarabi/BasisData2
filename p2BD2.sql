@@ -411,5 +411,50 @@ order by streaming desc
 
 
 
+use dbpegawai
+
+select * from tbkaryawan
+
+alter table tbkaryawan add tgl_lahir date
+insert into tbkaryawan values('4455343', 'gita risky', 'jl. parameswara', '12/12/2022', 3000000, 'L', '02/02/1978')
+create proc coba1 
+as 
+begin
+if(exists(select * from tbkaryawan))
+begin
+select nip,nama,
+iif(kd_jenis='L','Laki-laki','Perempuan') as jenis_kelamin, year(getdate())-year(tgl_lahir) as umur
+from tbkaryawan
+end
+else
+begin
+print 'file tidak ada!'
+end
+end
+go
+ 
+exec coba1
+
+
+create proc isian @np varchar (5),@nm varchar(20), @almt varchar(25), @tgl date, @gj int, @kdj char(1), @tgl_lahir date
+as
+begin
+if(exists(select * from tbkaryawan where nip=@np))
+begin
+print 'Data Sudah ada!'
+end 
+else
+begin
+insert into tbkaryawan values(@np, @nm,@almt, @tgl, @gj, @kdj, @tgl_lahir)
+print 'Data berhasil masuk!' 
+end
+end
+go
+ 
+exec isian '20192','Yuhana','jl. gerok','12/09/1990',5000000,'p', '12/04/1966'
+
+
+
+
 
  
