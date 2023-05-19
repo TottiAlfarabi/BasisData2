@@ -515,6 +515,7 @@ select * from nilai
 
 
 
+alter table mahasiswa add jurusan varchar(25)
 
 
 
