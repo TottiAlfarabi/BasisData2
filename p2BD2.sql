@@ -455,6 +455,70 @@ exec isian '20192','Yuhana','jl. gerok','12/09/1990',5000000,'p', '12/04/1966'
 
 
 
+create database dbmhs
+ 
+ 
+ 
+use dbmhs
+ 
+create table mahasiswa(npm varchar(10) primary key, nama varchar(25), angkatan char(4), IPK real)
+ 
+create table nilai(nourut int, npm varchar(10) foreign key references mahasiswa(npm), total_sks int, total_nilai real)
+ 
+insert into mahasiswa values('1924259012','Yunita','',0)
+insert into mahasiswa values('2025241013','Andi Baso','',0)
+insert into mahasiswa values('1823254016','Murdiono','',0)
+insert into mahasiswa values('1722242003','Bambang','',0)
+insert into mahasiswa values('1722250010','Melita','',0)
+insert into mahasiswa values('1823248017','Rahma','',0)
+insert into mahasiswa values('2025241015','Lucky','',0)
+insert into mahasiswa values('1924252011','Arquella','',0)
+insert into mahasiswa values('1823244010','Alvaro','',0)
+insert into mahasiswa values('1924255072','Rendra','',0)
+ 
+select * from mahasiswa
+ 
+create proc isi1
+as
+begin
+if(exists(select npm from mahasiswa))
+begin
+update mahasiswa set angkatan='20'+left(npm,2)
+end
+else
+begin
+print 'File tidak ada'
+end
+end
+go
+ 
+exec isi1
+ 
+create proc isi2 @npm varchar(10),@ttlsk int, @ttlnilai real
+as
+begin
+declare @nourut int, @IPKS float
+if(exists(select npm from mahasiswa where npm=@npm))
+begin
+set @nourut=(select count(*)+1 as id from mahasiswa where npm=@npm)
+set @npm=(select npm from mahasiswa where npm=@npm)
+set @IPKS=@ttlnilai/@ttlsk
+insert into nilai values(@nourut,@npm,@ttlsk,@ttlnilai)
+update mahasiswa set IPK=@IPKS where npm=@npm
+end
+end
+go
+ 
+exec isi2 '1722242003',144,324
+exec isi2 '1722250010',98,236
+select * from nilai
+
+
+
+
+
+
+
 
 
  
