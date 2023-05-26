@@ -517,6 +517,50 @@ select * from nilai
 
 alter table mahasiswa add jurusan varchar(25)
 
+use elektro
+
+select * from tblbarang
+
+
+alter table  tbljualan add foreign key (kdbrg) references tblbarang(kdbrg)
+alter table  tbljualan add foreign key (kdkasir) references tblkasir(kdkasir)
+
+insert into tbljualan values('V0192', '12/05/2023','M1200', '001',5)
+insert into tbljualan values('V0193', '10/05/2023','M1201', '002',2)
+
+select * from tbljualan
+
+create proc masukjualan @nofak varchar(6), @tgl date, @kdb varchar(5), @kdk char(3), @jmlh int
+as
+begin
+	declare @st int 
+	declare @sisa int
+	if(exists(select * from tbljualan))
+	begin
+		
+		set @st=(select stok from tblbarang where kdbrg=@kdb)
+		if(@jmlh>@st)
+		begin
+			print'Stok Tidak Cukup'
+		end
+		else
+		begin
+			set @sisa = @st-@jmlh
+			insert into tbljualan values(@nofak, @tgl, @kdb, @kdk, @jmlh)
+			print 'Data masuk'
+		end
+	end
+end
+go
+drop procedure masukjualan
+exec  masukjualan 'V0194','12/06/2023','M1200', '002', 4
+
+
+
+create view vjualan as select j.nofaktur, b.nmbrg, b.hrgjual, j.jumlah, nilaibarang = j.jumlah*b.hrgjual  from tbljualan as j, tblbarang as b
+where j.kdbrg = b.kdbrg
+
+select * from vjualan
 
 
 
