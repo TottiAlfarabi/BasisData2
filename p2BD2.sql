@@ -548,12 +548,13 @@ begin
 			set @sisa = @st-@jmlh
 			insert into tbljualan values(@nofak, @tgl, @kdb, @kdk, @jmlh)
 			print 'Data masuk'
+			update tblbarang set stok = @sisa where kdbrg=@kdb
 		end
 	end
 end
 go
 drop procedure masukjualan
-exec  masukjualan 'V0194','12/06/2023','M1200', '002', 4
+exec  masukjualan 'V0195','12/06/2023','M1200', '002', 1
 
 
 
