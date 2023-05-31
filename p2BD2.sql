@@ -601,6 +601,11 @@ else
 update daftarsiswa set keterangan = 'tidak lulus'
 where npm = @npm
 end
+end
 go
 
+insert into daftarnilai values('A0287', '2125250001', 50)
+insert into daftarnilai values('A0287', '2125250001', 50)
+select * from daftarsiswa
 
+select * from daftarnilai
