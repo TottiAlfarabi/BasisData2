@@ -567,4 +567,40 @@ select * from vjualan
 
 
 
+ create database dbnilai
  
+use dbnilai
+ 
+create table daftarsiswa (npm varchar(10) primary key, nama varchar(20), keterangan varchar(25))
+ 
+create table daftarnilai (kdmtk char(5) primary key, npm varchar(10) foreign key references daftarsiswa(npm), nilai int)
+ 
+insert into daftarsiswa values('2125250001','Yance','')
+ 
+insert into daftarsiswa values('2125250002','Budiana','')
+ 
+insert into daftarsiswa values('2125250003','Rendi','')
+ 
+insert into daftarsiswa values('2125250004','Lusiana','')
+ 
+insert into daftarsiswa values('2125250005','Tuti','')
+ 
+create trigger tr_status on daftarnilai
+for insert, update
+as
+begin
+declare @mtk char(5)
+declare @npm varchar(10)
+declare @nilai int
+select @nilai = nilai
+from daftarnilai
+if @nilai >= 60
+update daftarsiswa set keterangan = 'lulus'
+where npm = @npm
+else 
+update daftarsiswa set keterangan = 'tidak lulus'
+where npm = @npm
+end
+go
+
+
