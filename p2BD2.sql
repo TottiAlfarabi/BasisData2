@@ -617,10 +617,47 @@ select * from daftarnilai
 create database DBUSAHA
 
 use DBUSAHA
-create table tblDivisi (kodeDivisi int primary key, namaDivisi varchar(40))
-create table tblStatus (kodeStatus int primary key, namaStatus varchar(40))
+create table tblDivisi (kodeDivisi char(1) primary key, namaDivisi varchar(40))
+create table tblStatus (kodeStatus char(1) primary key, namaStatus varchar(40))
 create table tblGaji (gol char(1) primary key, GajiPokok int)
 
-create table tblKaryawan (nip int primary key, nama varchar(60), tmptLahir varchar(25), tglLahir date, jKelamin varchar(15), kodeStatus int foreign key references tblStatus(kodeStatus),
-alamat varchar(100), kota varchar(25), notlp varchar(25), kodeDivisi int foreign key references tblDivisi(kodeDivisi), gol char(1) foreign key references tblGaji(gol), jmlhAnak int)
+create table tblKaryawan (nip char(15) primary key, nama varchar(60), tmptLahir varchar(25), tglLahir date, jKelamin varchar(15), kodeStatus char(1) foreign key references tblStatus(kodeStatus),
+alamat varchar(100), kota varchar(25), notlp varchar(25), kodeDivisi char(1) foreign key references tblDivisi(kodeDivisi), gol char(1) foreign key references tblGaji(gol), jmlhAnak int NULL)
 
+insert into tblGaji values('A', 750000)
+insert into tblGaji values('B', 1000000)
+insert into tblGaji values('C', 1250000)
+insert into tblGaji values('D', 1500000)
+insert into tblGaji values('E', 1750000)
+insert into tblGaji values('F', 2000000)
+insert into tblGaji values('G', 2250000)
+insert into tblGaji values('H', 2500000)
+insert into tblGaji values('I', 2750000)
+insert into tblGaji values('J', 3000000)
+
+insert into tblDivisi values('A', 'Direktur')
+insert into tblDivisi values('B', 'Manager')
+insert into tblDivisi values('C', 'Personalia')
+insert into tblDivisi values('D', 'Marketing')
+insert into tblDivisi values('E', 'Produksi')
+insert into tblDivisi values('F', 'Warehouse')
+insert into tblDivisi values('G', 'Finance')
+insert into tblDivisi values('H', 'Accounting')
+insert into tblDivisi values('I', 'Umum')
+insert into tblDivisi values('J', 'Sales')
+
+select * from tblKaryawan
+
+
+insert into tblStatus values('1','tidak')
+insert into tblStatus values('2','kawin')
+insert into tblStatus values('3','duda')
+insert into tblStatus values('4','janda')
+
+
+insert into tblKaryawan values('0101001', 'DEWI', 'JAKARTA', '05/23/1977', 'P', '2', 'JL. RAYA BOGOR 21 RT 5/ RW 3', 'BOGOR', '025112358796', 'H','C', 2)
+insert into tblKaryawan values('0101002', 'ASTRI', 'TANGERANG', '02/12/1980', 'P', '1', 'JL. SUKA SENANG 22 RT 2/ RW 7', 'TANGERANG', '02197356894', 'E','B', null)
+insert into tblKaryawan values('0102001', 'ACHMAD', 'BANDUNG', '12/12/1988', 'L', '2', 'JL. BUKIT DAGO RT 7/ RW 9', 'JAKARTA', '0217563756', 'B','I', 1)
+insert into tblKaryawan values('0201003', 'UDIN', 'BOGOR', '10/09/1985', 'L', '1', 'JL. PAMULANG 2 RT 4/ RW 4', 'TANGERANG', '02178965432', 'G','E', null)
+insert into tblKaryawan values('0311021', 'FITRI', 'SUKABUMI', '10/15/1979', 'P', '2', 'JL. RAYA SUKABUMI RT 6/ RW 1', 'SUKABUMI', '0252232324', 'J','D', 1)
+ 
