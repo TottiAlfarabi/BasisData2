@@ -661,3 +661,10 @@ insert into tblKaryawan values('0102001', 'ACHMAD', 'BANDUNG', '12/12/1988', 'L'
 insert into tblKaryawan values('0201003', 'UDIN', 'BOGOR', '10/09/1985', 'L', '1', 'JL. PAMULANG 2 RT 4/ RW 4', 'TANGERANG', '02178965432', 'G','E', null)
 insert into tblKaryawan values('0311021', 'FITRI', 'SUKABUMI', '10/15/1979', 'P', '2', 'JL. RAYA SUKABUMI RT 6/ RW 1', 'SUKABUMI', '0252232324', 'J','D', 1)
  
+
+
+ create view gaji as select * from tblKaryawan, tblGaji where tblKaryawan.gol = tblGaji.gol and GajiPokok > 1500000
+ 
+ 
+ create view vjualan as select j.nofaktur, b.nmbrg, b.hrgjual, j.jumlah, nilaibarang = j.jumlah*b.hrgjual  from tbljualan as j, tblbarang as b
+where j.kdbrg = b.kdbrg 
