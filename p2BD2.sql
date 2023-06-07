@@ -609,3 +609,18 @@ insert into daftarnilai values('A0287', '2125250001', 50)
 select * from daftarsiswa
 
 select * from daftarnilai
+
+
+
+
+
+create database DBUSAHA
+
+use DBUSAHA
+create table tblDivisi (kodeDivisi int primary key, namaDivisi varchar(40))
+create table tblStatus (kodeStatus int primary key, namaStatus varchar(40))
+create table tblGaji (gol char(1) primary key, GajiPokok int)
+
+create table tblKaryawan (nip int primary key, nama varchar(60), tmptLahir varchar(25), tglLahir date, jKelamin varchar(15), kodeStatus int foreign key references tblStatus(kodeStatus),
+alamat varchar(100), kota varchar(25), notlp varchar(25), kodeDivisi int foreign key references tblDivisi(kodeDivisi), gol char(1) foreign key references tblGaji(gol), jmlhAnak int)
+
